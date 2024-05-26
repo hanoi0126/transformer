@@ -1,6 +1,6 @@
 import torch
-from layers.transformer.TransformerDecoder import TransformerDecoder
-from layers.transformer.TransformerEncoder import TransformerEncoder
+from layers.transformer.transformer_decoder import TransformerDecoder
+from layers.transformer.transformer_encoder import TransformerEncoder
 from torch import nn
 
 

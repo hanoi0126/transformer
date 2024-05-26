@@ -10,7 +10,6 @@ class Embedding(nn.Module):
             embedding_dim=d_model,
             padding_idx=pad_idx
         )
-        self.hidden_size = hidden_size
 
     def forward(self, input_batch: torch.Tensor) -> torch.Tensor:
         return self.embedding_layer(input_batch)

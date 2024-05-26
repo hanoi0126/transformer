@@ -26,4 +26,8 @@ RUN pip3 install \
     torch \
     pytest \
     matplotlib \
-    torchtext
+    torchtext \
+    wandb \ 
+    python-dotenv
+
+RUN export PYTHONPATH="$(pwd)"

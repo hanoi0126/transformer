@@ -16,7 +16,7 @@ class ScaledDotProductAttention(nn.Module):
         mask: torch.Tensor = None
     ) -> torch.Tensor:
         scaler = np.sqrt(self.d_k)
-        atttension_weight = torch.matmul(q, torch.transpose(k, 1, 2)) / scaler
+        attention_weight = torch.matmul(q, torch.transpose(k, 1, 2)) / scaler
         if mask is not None:
             if mask.dim() != attention_weight.dim():
                 raise ValueError(

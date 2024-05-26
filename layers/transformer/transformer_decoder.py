@@ -18,7 +18,7 @@ class TransformerDecoderLayer(nn.Module):
         layer_norm_eps: float,
     ):
         super().__init__()
-        self.selff_attention = MultiHeadAttention(d_model, heads_num)
+        self.self_attention = MultiHeadAttention(d_model, heads_num)
         self.dropout_self_attention = nn.Dropout(dropout_rate)
         self.layer_norm_self_attention = LayerNorm(d_model, eps=layer_norm_eps)
 
@@ -51,13 +51,17 @@ class TransformerDecoderLayer(nn.Module):
         return x
 
 
-    def _src_tgt_attention_block(
+    def __src_tgt_attention_block(
         self, tgt: torch.Tensor, src: torch.Tensor, mask: torch.Tensor,
     ) -> torch.Tensor:
         return self.dropout_src_tgt_attention(
             self.src_tgt_attention(tgt, src, src, mask)
         )
 
+    def __self_attention_block(
+        self, x: torch.Tensor, mask: torch.Tensor
+    ) -> torch.Tensor:
+        return self.dropout_self_attention(self.self_attention(x, x, x, mask))
 
     def __feed_forward_block(self, x: torch.Tensor) -> torch.Tensor:
         return self.dropout_ffn(self.ffn(x))
